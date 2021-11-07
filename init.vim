@@ -10,10 +10,19 @@ Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 call plug#end()
+" for c formating/intelisense
+" !indent -npsl -brf %
+" CocInstall coc-clangd
+
+" for js/ts formating/intellisense 
+" CocInstall coc-tsserver coc-json coc-html coc-css coc-eslint coc-prettier
 
 :set number
+:set nowrap
 
 autocmd VimEnter * NERDTree
 nnoremap <C-a> :NERDTreeToggle<CR>
@@ -25,6 +34,7 @@ inoremap { {}<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 
+" for go formating/intelisense
 au filetype go inoremap <buffer> . .<C-x><C-o>
 set completeopt=menu,noinsert
 
@@ -40,4 +50,5 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 :set hlsearch
+
 
