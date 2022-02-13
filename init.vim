@@ -17,6 +17,8 @@ call plug#end()
 " for c formating/intelisense
 " !indent -npsl -brf -npcs -br %
 " CocInstall coc-clangd
+" there are more quotation marks below
+"clangd.path: /home/me/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
 
 " for js/ts formating/intellisense 
 " CocInstall coc-tsserver coc-json coc-html coc-css coc-eslint coc-prettier
@@ -118,3 +120,19 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 let g:go_def_mapping_enabled = 0
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+"Typescript
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
